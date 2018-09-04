@@ -1,5 +1,6 @@
 package com.example.redma.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,15 @@ class ProductAdapter extends ArrayAdapter<Product> {
                 int count = product.getCount()+1;
                 product.setCount(count);
                 viewHolder.countView.setText(formatValue(count, product.getUnit()));
+            }
+        });
+
+        viewHolder.nameView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                viewHolder.nameView.setText("Alex");
             }
         });
 

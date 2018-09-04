@@ -18,8 +18,8 @@
         <ListView
             android:id="@+id/productList"
             android:layout_width="match_parent"
-            android:descendantFocusability="blocksDescendants"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants" />
 
     </LinearLayout>
 
@@ -27,9 +27,9 @@
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="72dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
         android:text="Add"
         app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,9 +39,9 @@
         android:id="@+id/btn_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="88dp"
         android:text="Remove"
         app:layout_constraintStart_toEndOf="@+id/editText2"
         app:layout_constraintTop_toTopOf="parent"
@@ -50,10 +50,10 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="46dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Enter punct"
         android:inputType="textPersonName"
@@ -64,10 +64,10 @@
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="47dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
         android:hint="Enter position"
         android:inputType="textPersonName"

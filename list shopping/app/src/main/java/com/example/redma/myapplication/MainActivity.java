@@ -1,5 +1,7 @@
 package com.example.redma.myapplication;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
 
         if(products.size()==0){
-            products.add(new Product("Картофель", "кг."));
-            products.add(new Product("Чай", "шт."));
-            products.add(new Product("Яйца", "шт."));
-            products.add(new Product("Молоко", "л."));
-            products.add(new Product("Макароны", "кг."));
+            products.add(new Product("Apples", "qty."));
+            products.add(new Product("Tea", "qty."));
+            products.add(new Product("Eggs", "qty."));
+            products.add(new Product("Milk", "qty."));
+            products.add(new Product("Pasta", "qty."));
         }
         productList = (ListView) findViewById(R.id.productList);
         final ProductAdapter adapter = new ProductAdapter(this, R.layout.list_item, products);
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 String newItem = txtInput.getText().toString();
 
                 if(!newItem.isEmpty()){
-                    products.add(new Product(newItem, "шт."));
+                    products.add(new Product(newItem, "qty."));
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -58,22 +60,30 @@ public class MainActivity extends AppCompatActivity {
         Button btn_Remove = (Button) findViewById(R.id.btn_remove);
 
 
-
         btn_Remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               int ind = Integer.parseInt(txtOut.getText().toString());
-                products.remove(ind-1);
-                adapter.notifyDataSetChanged();
+               try {
+                   int ind = Integer.parseInt(txtOut.getText().toString());
+                   products.remove(ind-1);
+                   adapter.notifyDataSetChanged();
+               } catch (NumberFormatException e){
+                   AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                   builder.setTitle("Error")
+                           .setMessage("Enter number position!")
+                           .setCancelable(false)
+                           .setNegativeButton("OK",
+                                   new DialogInterface.OnClickListener() {
+                                       public void onClick(DialogInterface dialog, int id) {
+                                           dialog.cancel();
+                                       }
+                                   });
+                   AlertDialog alert = builder.create();
+                   alert.show();
+               }
             }
         });
 
-        productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selected_item = String.valueOf(parent.getItemAtPosition(position));
-                Toast.makeText(MainActivity.this, selected_item, Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 }
