@@ -2,23 +2,21 @@ package com.example.redma.myapplication;
 
 public class Product {
     private String name;
-    private int count;
+    private String total;
     private String unit;
 
     Product(String name, String unit){
         this.name = name;
-        this.count=0;
+        this.total="Not Bought";
         this.unit = unit;
     }
-    public String getUnit() {
-        return this.unit;
-    }
-    public void setCount(int count) {
-        this.count = count;
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
-    public int getCount() {
-        return count;
+    public String getTotal() {
+        return total;
     }
     public void setName(String name){
         this.name = name;

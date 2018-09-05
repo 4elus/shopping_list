@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(products.size()==0){
-            products.add(new Product("Apples", "qty."));
-            products.add(new Product("Tea", "qty."));
-            products.add(new Product("Eggs", "qty."));
-            products.add(new Product("Milk", "qty."));
-            products.add(new Product("Pasta", "qty."));
+            products.add(new Product("Apples", "Not Bought"));
+            products.add(new Product("Tea", "Not Bought"));
+            products.add(new Product("Eggs", "Not Bought"));
+            products.add(new Product("Milk", "Not Bought"));
+            products.add(new Product("Pasta", "Not Bought"));
         }
         productList = (ListView) findViewById(R.id.productList);
         final ProductAdapter adapter = new ProductAdapter(this, R.layout.list_item, products);
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 String newItem = txtInput.getText().toString();
 
                 if(!newItem.isEmpty()){
-                    products.add(new Product(newItem, "qty."));
+                    products.add(new Product(newItem, "Not Bought"));
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -80,10 +80,34 @@ public class MainActivity extends AppCompatActivity {
                                    });
                    AlertDialog alert = builder.create();
                    alert.show();
+               } catch (IndexOutOfBoundsException er){
+                   AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                   builder.setTitle("Error")
+                           .setMessage("Position doesn't exist")
+                           .setCancelable(false)
+                           .setNegativeButton("OK",
+                                   new DialogInterface.OnClickListener() {
+                                       public void onClick(DialogInterface dialog, int id) {
+                                           dialog.cancel();
+                                       }
+                                   });
+                   AlertDialog alert = builder.create();
+                   alert.show();
                }
             }
         });
 
+        Button btn_removeAll = (Button) findViewById(R.id.btn_removeAll);
+
+        btn_removeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              products.clear();
+              adapter.notifyDataSetChanged();
+
+            }
+        });
 
     }
 }
